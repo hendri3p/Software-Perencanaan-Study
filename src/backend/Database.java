@@ -2,6 +2,7 @@ package backend;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import com.mysql.jdbc.Driver;
 import javax.swing.JOptionPane;
 
 public class Database {
@@ -17,7 +18,6 @@ public class Database {
     public Database () {
         try {
             //Membuat koneksi database
-            Class.forName("com.mysql.cj.jdbc.Driver");
             this.connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/plps","root",""); 
             this.statement = this.connect.createStatement();
             
@@ -30,7 +30,7 @@ public class Database {
             this.importTabelDosen();
             this.importTabelMahasiswa();
             
-        } catch (ClassNotFoundException | SQLException ex){
+        } catch ( SQLException ex){
             JOptionPane.showMessageDialog(null, "Inisiasi Database Error");
         }
     }
